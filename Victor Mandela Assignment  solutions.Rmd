@@ -1,0 +1,72 @@
+---
+title: "Assignment 1 - CONSULTING SKILLS"
+author: "Victor Mandela"
+date: "January 23, 2020"
+output: pdf_document
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r include=FALSE}
+setwd("C:/Users/user/Desktop/Professional issues assignment")
+```
+
+
+# UNIVERSITY OF NAIROBI
+
+# MSC SOCIAL STATISTICS
+
+# Name: Victor Mokaya
+
+# Reg.No: I56/12123/2018
+
+# Lecturer: Vincent Oeba (PhD)
+
+## Introduction
+
+In Kiambu peri-urban area, there is stiff competition for milk between the formal and informal market outlets, yet many smallholder milk producers sell milk at low prices, not competitive enough to ensure positive returns to external inputs they use to support intensive milk production. It is suggested that market information flow between milk producers and market actors impact on the price that farmers receive for their milk, and access and use of market information could explain why some are able to sell competitively while others are not. Farmers may not be seeking for market information among the market outlets, if they do, there could be information barriers in access, timeliness and reliability. Knowledge of the flow and use of market information on milk prices would be useful in designing effective price information dissemination strategies to help farmers sell their milk at profitable prices and realize positive returns to their investment for improved income and food security from dairy production.
+
+### Research objectives
+
+a)  To find out whether the impact of market information flow between milk producers and market actor has an effect on the price of milk milk in Kiambu County and to what extent.
+
+b)  To investigate whether the access to market information flow impact on price of milk in Kiambu County and to what extent.
+
+c)  To find out to what extent the use of market information flow impact on price of milk in Kiambu County.
+
+### Research questions
+
+a)  Does market information flow between milk producers and market actor affect the price of milk in Kiambu County?
+
+b)  Does the access to market information flow have impact on price of milk in Kiambu County and to what extent?
+
+c)  To what extent does the use of market information flow impact on the price of milk in Kiambu County?
+
+### Research hypothesis
+
+a)  Market information flow between milk producers and market actor does not affect the price of milk in Kiambu County?
+
+b)  Access to market information flow has no impact on price of milk in Kiambu County?
+
+c)  Market information flow does not have impact on the price of milk in Kiambu County?
+
+
+## Statistical Design
+
+This study we will use mixed research design. Both descriptive and inferential statistics will be effective since this is a observational research. Some authors regard this approach as the third methodological movement one which complements purely quantitative or qualitative strategies. The reason for the above method is basically due to the complementary aspect of both quantitative and qualitative method. Qualitative research is exploratory in nature and helps to explains people's opinions, feelings, motivations and views. Quantitative research identifies numerical data and can be therefore transformed into statistics which are of interest to the researcher.
+
+
+v)	What are the suitable measurements variables from your stated objectives? (2 mks)
+
+The response variable is the **price of milk** in Kiambu County. The predictors variables are:-
+
+a) **Market information flow between milk producers and market actor**
+
+b) **Access to market information flow** and
+
+c) **General market information flow**
+
+## Data analysis and Statistical models
+
+From the nature of the variables. The researcher would opt to use linear regression modelling. This statistical model is adviced by response being of numeric and of continuous nature. The coefficients of the variables and the p-values will be used to interprete the significance, magnitude, size and direction of the effects the predictor variables on price of milk.
+

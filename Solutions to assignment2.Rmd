@@ -1,0 +1,87 @@
+---
+title: "Assignment 2 - Scientific Writing"
+author: "Victor Mandela"
+date: "January 23, 2020"
+output: pdf_document
+editor_options: 
+  chunk_output_type: console
+---
+
+# SCIENTIFIC WRITING 
+
+# PROFESSIONAL ISSUES
+
+
+
+```{r include=FALSE}
+setwd("C:/Users/user/Desktop/Professional issues assignment")
+```
+
+## Introduction
+
+Cereal yields in Africa average less than 1.5 MT/ha compared to an average yield in Asia and Latin America of 5 MT/ha and 8 MT/ha, respectively (FAOSTAT 2015). One of the main explanations for this difference is the relatively poor soil fertility on the smallholder farms. This problem of low soil fertility has plagued Africa's soils for the last 40 years and is currently considered a crisis (AGRA 2016). The low soil fertility is due to several decades of nutrient mining as a result of continuous cultivation with little or no fertiliser (organic and inorganic) application. Consequently, the soils in Africa farmlands are often deficient in nutrients, with low or no organic matter and have limited ability to hold water. The use of fertilisers to address the crisis has remained low compared to the rest of the world because of: unaffordability of fertilisers by the farmers due to high prices of mineral fertiliser and lack of credit facilities; lack of availability of mineral fertiliser in the market when the farmers need them due to either poor transport and infrastructure or market dynamics-related factors; lack of know-how on effective combinations and application for optimal returns; and counter-productive policies, government regulations and laws that have corrupted the fertiliser market. To address these challenges the use of integrated soil fertility management (ISFM) needs to be promoted.  The integrated soil fertility management is defined as a set of soil fertility management practices that necessarily include the use of fertilizer, organic inputs, and improved germplasm combined with the knowledge on how to adapt these practices to local conditions, aiming at maximizing agronomic use efficiency of the applied nutrients and improving crop productivity (Vanlauwe et al. 2014; Sanginga and Woomer 2009). Notably, before the inception of ISFM, there were shortfalls associated with sole mineral fertilisers use such as environmental and health concerns, high cost and unavailability. A study was conducted in Eastern Kenya on adoption of ISFM technologies whose data is attached. Study it carefully and answer the following questions.
+
+
+1.	Identify suitable title in relation to the data.
+
+Interventional effects of integrated soil fertility management (ISFM) on maize yield in Kiambene, Eastern Kenya.
+
+2.	Provide brief background in relation to your title.
+
+3.	Set suitable objectives based on the data.
+
+a)  Identify the treatment intervention that is most on average productivity
+
+b)  Quantify whether the treatment effect is statistically significant
+
+c)  Demonstrate the effectiveness of ISFM on average maize yield
+
+4.	Analyse the data and present your results to demonstrate whether the interventions on improving soil fertility significantly influenced the maize yield. Support your results with suitable citations as this is really data set.
+5.	Provide suitable conclusions and recommendations where appropriate.
+Remark: Questions 1 to 5 will constitute your technical report of about 5-10 pages.
+
+```{r include=FALSE}
+library(tidyverse)
+library(broom)
+theme_set(theme_light())
+
+#set working directory
+setwd("C:/Users/user/Desktop/Professional issues assignment")
+
+#load the data
+intervention <- readxl::read_xlsx("ON FARM DATA ON MAIZE YIELD DURING SHORT RAINS.xlsx", col_types = c("numeric", "guess",  "numeric","numeric","skip","skip"))
+
+#clean the data
+intervention %>% select(1:3) %>% slice(-c(1:3)) %>% rename("FarmId"= "On-farm yields 2003 short rains (SR)","Treatment"="...2","Maize Yield"="...3" ) -> new_data
+
+#Test for the treatments
+new_data %>%
+  mutate( Treatment = case_when(Treatment == "control"~"Control", TRUE~Treatment) ) %>% 
+  group_by(Treatment) %>% 
+  summarise(t_test = list(t.test(`Maize Yield`))) %>% 
+  mutate(tidied = map(t_test,tidy)) %>% 
+  unnest(tidied) %>% 
+  mutate(Treatment = fct_reorder(Treatment ,estimate)) %>%
+  ggplot(aes(estimate,Treatment)) +
+  geom_point() +
+  geom_errorbarh(aes(xmin = conf.low,
+                     xmax = conf.high)) +
+  labs(x = "Avegare Maize yield (higher yield means more maize produce)", y = " Type of ")
+```
+
+```{r}
+new_data %>%
+  mutate( Treatment = case_when(Treatment == "control"~"Control", TRUE~Treatment) ) %>% 
+  group_by(Treatment) %>% 
+  summarise(t_test = list(t.test(`Maize Yield`,mu = 1.94))) %>% 
+  mutate(tidied = map(t_test,tidy)) %>% 
+  unnest(tidied) %>% 
+  mutate(Treatment = fct_reorder(Treatment ,estimate), sig_status = case_when(p.value <= 0.05 ~ "significant", p.value > 0.05 ~ "Not significant")) %>% 
+  ggplot(aes(estimate,Treatment)) +
+  geom_point(aes(color = sig_status)) +
+  geom_errorbarh(aes(xmin = conf.low,
+                     xmax = conf.high)) +
+  labs(x = "Avegare Maize yield (higher yield means more maize produce)", y = " Type of ")
+```
+
+
